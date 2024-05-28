@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+    # PHP service
+    mauricio-lores:
+        build: .
+        container_name: mauricio-lores
+        working_dir: /var/www/
+        volumes:
+            - ./out:/var/www
+        networks:
+            - mauricio-lores
+
+    # Nginx service
+    nginx-mauricio-lores:
+        image: nginx:1.24.0-alpine
+        container_name: php-nginx-mauricio-lores
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 9020:80
+        volumes:
+            - ./out:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - mauricio-lores
+
+networks:
+    mauricio-lores:
+        driver: bridge
