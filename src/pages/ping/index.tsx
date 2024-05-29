@@ -27,7 +27,6 @@ const PingPage: React.FC = () => {
       const response = await fetch(`https://chipped-sophisticated-grey.glitch.me/ping/${ipAddress}`)
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
         setPingResults(prevResults => [data, ...prevResults].slice(0, 15))
       } else {
         console.error('Error fetching ping result:', response.statusText)
