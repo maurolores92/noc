@@ -24,7 +24,7 @@ const PingPage: React.FC = () => {
 
   const handlePing = async () => {
     try {
-      const response = await fetch(`/api/ping?ip=${ipAddress}`)
+      const response = await fetch(`https://chipped-sophisticated-grey.glitch.me/ping/${ipAddress}`)
       if (response.ok) {
         const data = await response.json()
         console.log(data)
@@ -108,7 +108,9 @@ const PingPage: React.FC = () => {
               </ListItemIcon>
               <ListItemText>
                 {result.alive
-                  ? `Ping successful tiempo= ${result.time}ms, bytes= ${result.output.match(/bytes=(\d+)/)[1]} bytes`
+                  ? `Ping successful tiempo= ${result.time}ms, bytes= ${
+                      (result.output.match(/bytes=(\d+)/) || [])[1] || 'N/A'
+                    } bytes`
                   : 'Tiempo de espera agotado para esta solicitud.'}
               </ListItemText>
             </ListItem>
