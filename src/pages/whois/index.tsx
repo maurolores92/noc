@@ -59,6 +59,15 @@ const WhoisLookup: React.FC = () => {
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
+                  <Icon icon='grommet-icons:host' fontSize={20} />
+                </ListItemIcon>
+                <ListItemText primary='Hostname: ' />
+              </ListItemButton>
+              <Typography variant='body1'>{result.hostname || 'Información no disponible'}</Typography>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
                   <Icon icon='hugeicons:property-view' fontSize={20} />
                 </ListItemIcon>
                 <ListItemText primary='Propietario:' />
@@ -91,6 +100,15 @@ const WhoisLookup: React.FC = () => {
                 <ListItemText primary='País: ' />
               </ListItemButton>
               <Typography variant='body1'>{result.country || 'Información no disponible'}</Typography>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Icon icon='clarity:organization-line' fontSize={20} />
+                </ListItemIcon>
+                <ListItemText primary='ORG: ' />
+              </ListItemButton>
+              <Typography variant='body1'>{result.org || 'Información no disponible'}</Typography>
             </ListItem>
           </List>
         </Fragment>
