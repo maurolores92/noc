@@ -26,7 +26,7 @@ const MacVendorLookup: React.FC = () => {
   return (
     <Container maxWidth='sm'>
       <Typography variant='h4' sx={{ margin: '2rem 0' }}>
-        MAC Vendor Lookup
+        Búsqueda de proveedores de MAC
       </Typography>
       <TextField
         label='MAC Address'
@@ -37,7 +37,7 @@ const MacVendorLookup: React.FC = () => {
         sx={{ marginBottom: '1rem' }}
       />
       <Button variant='contained' color='primary' onClick={fetchVendorInfo} fullWidth>
-        Lookup Vendor
+        Proveedor de búsqueda
       </Button>
       {error && (
         <Typography variant='body1' color='error' sx={{ marginTop: '1rem' }}>
@@ -46,7 +46,7 @@ const MacVendorLookup: React.FC = () => {
       )}
       {vendorInfo && (
         <Box sx={{ marginTop: '1rem' }}>
-          <Typography variant='body1'>Vendor Information: {vendorInfo}</Typography>
+          <Typography variant='body1'>Informacion del proveedor: {vendorInfo}</Typography>
         </Box>
       )}
     </Container>
