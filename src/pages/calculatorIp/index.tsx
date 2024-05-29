@@ -1,6 +1,19 @@
 import { Box, Button, Container, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 
+import { Fragment } from 'react'
+
+// ** MUI Imports
+import List from '@mui/material/List'
+import Divider from '@mui/material/Divider'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import ListItemButton from '@mui/material/ListItemButton'
+
+// ** Icon Imports
+import Icon from 'src/@core/components/icon'
+
 interface IPDetails {
   ipAddress: string
   networkAddress: string
@@ -126,53 +139,219 @@ const IPDetailsPage: React.FC = () => {
   }
 
   return (
-    <Container maxWidth='sm'>
-      <Typography variant='h1' sx={{ fontSize: '30px' }}>
+    <Container maxWidth='md'>
+      <Typography variant='h1' sx={{ fontSize: '22px' }}>
         Calculadora de IP
       </Typography>
-      <TextField
-        label='IP Address'
-        value={ipAddress}
-        onChange={e => setIpAddress(e.target.value)}
-        placeholder='IP Address'
-        sx={{ width: '100%', marginTop: '2rem' }}
-      />
-      <FormControl sx={{ width: '100%', marginTop: '2rem' }}>
-        <InputLabel id='subnet-mask-label'>Subnet Mask</InputLabel>
-        <Select labelId='subnet-mask-label' value={subnetMask} onChange={e => setSubnetMask(e.target.value as string)}>
-          <MenuItem value=''>Select Subnet Mask</MenuItem>
-          {subnetMaskOptions.map((option, index) => (
-            <MenuItem key={index} value={option}>
-              {option}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <Button onClick={calculateDetails} variant='contained' color='primary' fullWidth sx={{ marginTop: '2rem' }}>
-        Calcular
-      </Button>
-
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <TextField
+          label='IP Address'
+          value={ipAddress}
+          onChange={e => setIpAddress(e.target.value)}
+          placeholder='IP Address'
+          sx={{ margin: '1rem', width: '300px' }}
+        />
+        <FormControl sx={{ margin: '1rem', width: '300px' }}>
+          <InputLabel id='subnet-mask-label'>Mascara de Subred</InputLabel>
+          <Select
+            labelId='subnet-mask-label'
+            value={subnetMask}
+            onChange={e => setSubnetMask(e.target.value as string)}
+          >
+            <MenuItem value=''>Select Subnet Mask</MenuItem>
+            {subnetMaskOptions.map((option, index) => (
+              <MenuItem key={index} value={option}>
+                {option}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <Button onClick={calculateDetails} variant='contained' color='primary' sx={{ margin: '1rem' }}>
+          Calcular
+        </Button>
+      </Box>
       {ipDetails && (
         <Box>
-          <Typography variant='body1'>IP Address: {ipDetails.ipAddress}</Typography>
-          <Typography variant='body1'>Network Address: {ipDetails.networkAddress}</Typography>
-          <Typography variant='body1'>Usable Host IP Range: {ipDetails.usableHostIPRange}</Typography>
-          <Typography variant='body1'>Broadcast Address: {ipDetails.broadcastAddress}</Typography>
-          <Typography variant='body1'>Total Number of Hosts: {ipDetails.totalNumberOfHosts}</Typography>
-          <Typography variant='body1'>Number of Usable Hosts: {ipDetails.numberOfUsableHosts}</Typography>
-          <Typography variant='body1'>Subnet Mask: {ipDetails.subnetMask}</Typography>
-          <Typography variant='body1'>Wildcard Mask: {ipDetails.wildcardMask}</Typography>
-          <Typography variant='body1'>Binary Subnet Mask: {ipDetails.binarySubnetMask}</Typography>
-          <Typography variant='body1'>IP Class: {ipDetails.ipClass}</Typography>
-          <Typography variant='body1'>CIDR Notation: {ipDetails.cidrNotation}</Typography>
-          <Typography variant='body1'>IP Type: {ipDetails.ipType}</Typography>
-          <Typography variant='body1'>Short: {ipDetails.short}</Typography>
-          <Typography variant='body1'>Binary ID: {ipDetails.binaryID}</Typography>
-          <Typography variant='body1'>Integer ID: {ipDetails.integerID}</Typography>
-          <Typography variant='body1'>Hex ID: {ipDetails.hexID}</Typography>
-          <Typography variant='body1'>InAddr Arpa: {ipDetails.inAddrArpa}</Typography>
-          <Typography variant='body1'>IPv4 Mapped Address: {ipDetails.ipv4MappedAddress}</Typography>
-          <Typography variant='body1'>IPv6to4 Prefix: {ipDetails.ipv6to4Prefix}</Typography>
+          <Fragment>
+            <List component='nav' aria-label='main mailbox'>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='IP Address:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.ipAddress}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Network Address:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.networkAddress}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Rango de IP de host utilizable:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.usableHostIPRange}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Broadcast Address:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.broadcastAddress}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Número total de Hosts:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.totalNumberOfHosts}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Número Utilizable de Hosts:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.numberOfUsableHosts}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Máscara de subred:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.subnetMask}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Mascara Wildcard:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.wildcardMask}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Máscara de subred binaria:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.binarySubnetMask}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Clase IP: ' />
+                </ListItemButton>
+                <Typography variant='body1'>{ipDetails.ipClass}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Notación CIDR:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.cidrNotation}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Tipo de IP: ' />
+                </ListItemButton>
+                <Typography variant='body1'>{ipDetails.ipType}</Typography>
+              </ListItem>
+            </List>
+
+            <Divider sx={{ m: '0 !important' }} />
+
+            <List component='nav' aria-label='secondary mailbox'>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='Corto:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.short}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='ID Binaria: ' />
+                </ListItemButton>
+                <Typography variant='body1'>{ipDetails.binaryID}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='ID Entero:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.integerID}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='ID Hexadecimal:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.hexID}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='InAddr Arpa:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.inAddrArpa}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='IPv4 Mapped Address:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.ipv4MappedAddress}</Typography>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon icon='ph:network' fontSize={20} />
+                  </ListItemIcon>
+                  <ListItemText primary='IPv6to4 Prefix:' />
+                </ListItemButton>
+                <Typography variant='body1'> {ipDetails.ipv6to4Prefix}</Typography>
+              </ListItem>
+            </List>
+          </Fragment>
         </Box>
       )}
     </Container>

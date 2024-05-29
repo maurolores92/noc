@@ -14,13 +14,18 @@ const navigation = (): VerticalNavItemsType => {
       icon: 'tabler:user'
     },
     {
+      title: 'Calculadora Ip',
+      path: '/calculatorIp',
+      icon: 'tabler:brand-tabler'
+    },
+    {
       title: 'MAC Vendors',
       icon: 'tabler:forms',
       path: '/mac'
     },
     {
-      title: 'Calculadora Ip',
-      path: '/calculatorIp',
+      title: 'Mi IP',
+      path: '/miIp',
       icon: 'tabler:brand-tabler'
     }
 

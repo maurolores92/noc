@@ -112,9 +112,9 @@ const Customizer = () => {
           }}
         >
           <Typography variant='h6' sx={{ fontWeight: 600, textTransform: 'uppercase' }}>
-            Theme Customizer
+            Customizar Tema
           </Typography>
-          <Typography sx={{ color: 'text.secondary' }}>Customize & Preview in Real Time</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>Customizalo y miralo en tiempo real</Typography>
           <IconButton
             onClick={() => setOpen(false)}
             sx={{
@@ -135,7 +135,7 @@ const Customizer = () => {
               variant='caption'
               sx={{ mb: 5, color: 'text.disabled', textTransform: 'uppercase' }}
             >
-              Theming
+              Tema
             </Typography>
 
             {/* Skin */}
@@ -147,31 +147,31 @@ const Customizer = () => {
                 sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
                 onChange={e => handleChange('skin', e.target.value as Settings['skin'])}
               >
-                <FormControlLabel value='default' label='Default' control={<Radio />} />
-                <FormControlLabel value='bordered' label='Bordered' control={<Radio />} />
+                <FormControlLabel value='default' label='Defecto' control={<Radio />} />
+                <FormControlLabel value='bordered' label='Bordeado' control={<Radio />} />
               </RadioGroup>
             </Box>
 
             {/* Mode */}
             <Box sx={{ mb: 5 }}>
-              <Typography>Mode</Typography>
+              <Typography>Modo</Typography>
               <RadioGroup
                 row
                 value={mode}
                 onChange={e => handleChange('mode', e.target.value as any)}
                 sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
               >
-                <FormControlLabel value='light' label='Light' control={<Radio />} />
-                <FormControlLabel value='dark' label='Dark' control={<Radio />} />
+                <FormControlLabel value='light' label='Claro' control={<Radio />} />
+                <FormControlLabel value='dark' label='Oscuro' control={<Radio />} />
                 {layout === 'horizontal' ? null : (
-                  <FormControlLabel value='semi-dark' label='Semi Dark' control={<Radio />} />
+                  <FormControlLabel value='semi-dark' label='Semi Oscuro' control={<Radio />} />
                 )}
               </RadioGroup>
             </Box>
 
             {/* Color Picker */}
             <div>
-              <Typography>Primary Color</Typography>
+              <Typography>Color Primario</Typography>
               <Box sx={{ display: 'flex' }}>
                 <ColorBox
                   onClick={() => handleChange('themeColor', 'primary')}
@@ -242,7 +242,7 @@ const Customizer = () => {
 
             {/* Content Width */}
             <Box sx={{ mb: 5 }}>
-              <Typography>Content Width</Typography>
+              <Typography>Ancho del Contenido</Typography>
               <RadioGroup
                 row
                 value={contentWidth}
@@ -256,39 +256,39 @@ const Customizer = () => {
 
             {/* AppBar */}
             <Box sx={{ mb: 5 }}>
-              <Typography>AppBar Type</Typography>
+              <Typography>Tipo de barra de aplicaciones</Typography>
               <RadioGroup
                 row
                 value={appBar}
                 sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
                 onChange={e => handleChange('appBar', e.target.value as Settings['appBar'])}
               >
-                <FormControlLabel value='fixed' label='Fixed' control={<Radio />} />
-                <FormControlLabel value='static' label='Static' control={<Radio />} />
+                <FormControlLabel value='fixed' label='Fijo' control={<Radio />} />
+                <FormControlLabel value='static' label='Estatico' control={<Radio />} />
                 {layout === 'horizontal' ? null : (
-                  <FormControlLabel value='hidden' label='Hidden' control={<Radio />} />
+                  <FormControlLabel value='hidden' label='Oculto' control={<Radio />} />
                 )}
               </RadioGroup>
             </Box>
 
             {/* Footer */}
             <Box sx={{ mb: 5 }}>
-              <Typography>Footer Type</Typography>
+              <Typography>Tipo de pie de pagina</Typography>
               <RadioGroup
                 row
                 value={footer}
                 sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
                 onChange={e => handleChange('footer', e.target.value as Settings['footer'])}
               >
-                <FormControlLabel value='fixed' label='Fixed' control={<Radio />} />
-                <FormControlLabel value='static' label='Static' control={<Radio />} />
-                <FormControlLabel value='hidden' label='Hidden' control={<Radio />} />
+                <FormControlLabel value='fixed' label='Fijo' control={<Radio />} />
+                <FormControlLabel value='static' label='Estatico' control={<Radio />} />
+                <FormControlLabel value='hidden' label='Oculto' control={<Radio />} />
               </RadioGroup>
             </Box>
 
             {/* AppBar Blur */}
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <Typography>AppBar Blur</Typography>
+              <Typography>Desenfoque de la barra de aplicaciones</Typography>
               <Switch
                 name='appBarBlur'
                 checked={appBarBlur}
@@ -349,7 +349,7 @@ const Customizer = () => {
             {/* Menu Collapsed */}
             {navHidden || layout === 'horizontal' ? null : (
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 5 }}>
-                <Typography>Menu Collapsed</Typography>
+                <Typography>Menu Colapsado</Typography>
                 <Switch
                   name='navCollapsed'
                   checked={navCollapsed}
@@ -361,7 +361,7 @@ const Customizer = () => {
             {/* Menu Hidden */}
             {layout === 'horizontal' && appBar === 'hidden' ? null : (
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Typography>Menu Hidden</Typography>
+                <Typography>Menu Oculto</Typography>
                 <Switch
                   name='navHidden'
                   checked={navHidden}

@@ -61,102 +61,27 @@ interface DefaultSuggestionsType {
 
 const defaultSuggestionsData: DefaultSuggestionsType[] = [
   {
-    category: 'Popular Searches',
+    category: 'Menu',
     suggestions: [
       {
-        icon: 'tabler:chart-pie-2',
-        suggestion: 'Analytics',
+        icon: 'tabler:smart-home',
+        suggestion: 'Dashboard',
         link: '/'
       },
       {
-        icon: 'tabler:device-analytics',
-        suggestion: 'CRM',
-        link: '/dashboards/crm'
+        icon: 'tabler:user',
+        suggestion: 'Ping',
+        link: '/ping'
       },
       {
-        icon: 'tabler:shopping-cart',
-        suggestion: 'eCommerce',
-        link: '/dashboards/ecommerce'
+        icon: 'tabler:forms',
+        suggestion: 'Mac',
+        link: '/mac'
       },
       {
-        icon: 'tabler:users',
-        suggestion: 'User List',
-        link: '/apps/user/list'
-      }
-    ]
-  },
-  {
-    category: 'Apps & Pages',
-    suggestions: [
-      {
-        icon: 'tabler:calendar',
-        suggestion: 'Calendar',
-        link: '/apps/calendar'
-      },
-      {
-        icon: 'tabler:list-numbers',
-        suggestion: 'Invoice List',
-        link: '/apps/invoice/list'
-      },
-      {
-        icon: 'tabler:currency-dollar',
-        suggestion: 'Pricing',
-        link: '/pages/pricing'
-      },
-      {
-        icon: 'tabler:settings',
-        suggestion: 'Account Settings',
-        link: '/pages/account-settings/account'
-      }
-    ]
-  },
-  {
-    category: 'User Interface',
-    suggestions: [
-      {
-        icon: 'tabler:typography',
-        suggestion: 'Typography',
-        link: '/ui/typography'
-      },
-      {
-        icon: 'tabler:browser',
-        suggestion: 'Tabs',
-        link: '/components/tabs'
-      },
-      {
-        icon: 'tabler:hand-click',
-        suggestion: 'Buttons',
-        link: '/components/buttons'
-      },
-      {
-        icon: 'tabler:id',
-        suggestion: 'Advanced Cards',
-        link: '/ui/cards/advanced'
-      }
-    ]
-  },
-  {
-    category: 'Forms & Tables',
-    suggestions: [
-      {
-        icon: 'tabler:list-check',
-        suggestion: 'Select',
-        link: '/forms/form-elements/select'
-      },
-      {
-        icon: 'tabler:space',
-        suggestion: 'Autocomplete',
-        link: '/forms/form-elements/autocomplete'
-      },
-      {
-        icon: 'tabler:layout-grid',
-        suggestion: 'Table',
-        link: '/tables/mui'
-      },
-      {
-        icon: 'tabler:calendar-event',
-        suggestion: 'Date Pickers',
-        link: '/forms/form-elements/pickers'
+        icon: 'tabler:brand-tabler',
+        suggestion: 'Calculadora de IP',
+        link: '/calculatorIp'
       }
     ]
   }
@@ -500,9 +425,7 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
                         ...params.InputProps,
                         sx: { p: `${theme.spacing(3.75, 6)} !important`, '&.Mui-focused': { boxShadow: 0 } },
                         startAdornment: (
-                          <InputAdornment position='start' sx={{ color: 'text.primary' }}>
-                            <Icon fontSize='1.5rem' icon='tabler:search' />
-                          </InputAdornment>
+                          <InputAdornment position='start' sx={{ color: 'text.primary' }}></InputAdornment>
                         ),
                         endAdornment: (
                           <InputAdornment

@@ -1,54 +1,56 @@
-import React, { useState } from 'react';
-import { TextField, Button, Typography, Container } from '@mui/material';
+import React, { useState } from 'react'
+import { Box, Button, Container, TextField, Typography } from '@mui/material'
+import axios from 'axios'
 
-const IndexPage: React.FC = () => {
-  const [macAddress, setMacAddress] = useState<string>('');
-  const [result, setResult] = useState<string>('');
+const MacVendorLookup: React.FC = () => {
+  const [macAddress, setMacAddress] = useState('')
+  const [vendorInfo, setVendorInfo] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMacAddress(event.target.value)
+  }
+
+  const fetchVendorInfo = async () => {
+    setError(null)
+    setVendorInfo(null)
 
     try {
-      const response = await fetch(`../api/${encodeURIComponent(macAddress)}`);
-      if (response.ok) {
-        const data = await response.text();
-        setResult(data);
-      } else {
-        setResult('Not Found');
-      }
+      const response = await axios.get(`http://localhost:3001/api/${macAddress}`)
+      setVendorInfo(response.data)
     } catch (error) {
-      console.error('Error fetching data:', error);
-      setResult('Error fetching data');
+      setError('Failed to fetch vendor information. Please check the MAC address and try again.')
     }
-  };
+  }
 
-    return (
-        <Container maxWidth="sm">
-        <Typography variant="h1" sx={{fontSize:'30px'}} gutterBottom>
-            Consulta de Propietario de MAC
-        </Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="Dirección MAC"
-          variant="outlined"
-          value={macAddress}
-          onChange={(event) => setMacAddress(event.target.value)}
-          fullWidth
-          required
-          autoFocus
-          margin="normal"
-        />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
-          Consultar
-        </Button>
-      </form>
-      {result && (
-        <Typography variant="body1" align="center" gutterBottom>
-          Fabricante: {result}
+  return (
+    <Container maxWidth='sm'>
+      <Typography variant='h4' sx={{ margin: '2rem 0' }}>
+        MAC Vendor Lookup
+      </Typography>
+      <TextField
+        label='MAC Address'
+        value={macAddress}
+        onChange={handleInputChange}
+        placeholder='Enter MAC Address'
+        fullWidth
+        sx={{ marginBottom: '1rem' }}
+      />
+      <Button variant='contained' color='primary' onClick={fetchVendorInfo} fullWidth>
+        Lookup Vendor
+      </Button>
+      {error && (
+        <Typography variant='body1' color='error' sx={{ marginTop: '1rem' }}>
+          {error}
         </Typography>
       )}
+      {vendorInfo && (
+        <Box sx={{ marginTop: '1rem' }}>
+          <Typography variant='body1'>Vendor Information: {vendorInfo}</Typography>
+        </Box>
+      )}
     </Container>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default MacVendorLookup

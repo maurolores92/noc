@@ -25,8 +25,8 @@ const PingPage: React.FC = () => {
   }
 
   return (
-    <Container>
-      <Box my={4}>
+    <Container maxWidth='sm'>
+      <Box>
         <Typography variant='h4' gutterBottom>
           Ping an IP Address
         </Typography>
@@ -37,7 +37,7 @@ const PingPage: React.FC = () => {
           fullWidth
           margin='normal'
         />
-        <Button variant='contained' color='primary' onClick={handlePing} disabled={loading}>
+        <Button variant='contained' color='primary' fullWidth onClick={handlePing} disabled={loading}>
           {loading ? 'Pinging...' : 'Ping'}
         </Button>
         {pingResult && (
