@@ -27,6 +27,11 @@ const navigation = (): HorizontalNavItemsType => {
       title: 'Mi IP',
       path: '/miIp',
       icon: 'tabler:brand-tabler'
+    },
+    {
+      title: 'Whois',
+      path: '/whois',
+      icon: 'tabler:brand-tabler'
     }
 
     /*{

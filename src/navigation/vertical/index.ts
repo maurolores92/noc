@@ -27,6 +27,11 @@ const navigation = (): VerticalNavItemsType => {
       title: 'Mi IP',
       path: '/miIp',
       icon: 'tabler:brand-tabler'
+    },
+    {
+      title: 'Whois',
+      path: '/whois',
+      icon: 'hugeicons:office'
     }
 
     /*{
