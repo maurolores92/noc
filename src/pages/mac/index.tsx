@@ -1,56 +1,75 @@
-import React, { useState } from 'react'
-import { Box, Button, Container, TextField, Typography } from '@mui/material'
-import axios from 'axios'
+import React, { Fragment, useState } from 'react'
+import {
+  TextField,
+  Button,
+  Typography,
+  Container,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText
+} from '@mui/material'
+import { Icon } from '@iconify/react'
 
-const MacVendorLookup: React.FC = () => {
-  const [macAddress, setMacAddress] = useState('')
-  const [vendorInfo, setVendorInfo] = useState<string | null>(null)
-  const [error, setError] = useState<string | null>(null)
+const IndexPage: React.FC = () => {
+  const [macAddress, setMacAddress] = useState<string>('')
+  const [result, setResult] = useState<string>('')
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMacAddress(event.target.value)
-  }
-
-  const fetchVendorInfo = async () => {
-    setError(null)
-    setVendorInfo(null)
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
 
     try {
-      const response = await axios.get(`http://localhost:3001/api/${macAddress}`)
-      setVendorInfo(response.data)
+      const response = await fetch(`../api/${encodeURIComponent(macAddress)}`)
+      if (response.ok) {
+        const data = await response.text()
+        setResult(data)
+      } else {
+        setResult('Not Found')
+      }
     } catch (error) {
-      setError('Failed to fetch vendor information. Please check the MAC address and try again.')
+      console.error('Error fetching data:', error)
+      setResult('Error fetching data')
     }
   }
 
   return (
     <Container maxWidth='sm'>
-      <Typography variant='h4' sx={{ margin: '2rem 0' }}>
-        Búsqueda de proveedores de MAC
+      <Typography variant='h1' sx={{ fontSize: '30px' }} gutterBottom>
+        Consulta de Propietario de MAC
       </Typography>
-      <TextField
-        label='MAC Address'
-        value={macAddress}
-        onChange={handleInputChange}
-        placeholder='Enter MAC Address'
-        fullWidth
-        sx={{ marginBottom: '1rem' }}
-      />
-      <Button variant='contained' color='primary' onClick={fetchVendorInfo} fullWidth>
-        Proveedor de búsqueda
-      </Button>
-      {error && (
-        <Typography variant='body1' color='error' sx={{ marginTop: '1rem' }}>
-          {error}
-        </Typography>
-      )}
-      {vendorInfo && (
-        <Box sx={{ marginTop: '1rem' }}>
-          <Typography variant='body1'>Informacion del proveedor: {vendorInfo}</Typography>
-        </Box>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label='Dirección MAC'
+          variant='outlined'
+          value={macAddress}
+          onChange={event => setMacAddress(event.target.value)}
+          fullWidth
+          required
+          autoFocus
+          margin='normal'
+        />
+        <Button type='submit' variant='contained' color='primary' fullWidth>
+          Consultar
+        </Button>
+      </form>
+      {result && (
+        <Fragment>
+          <List component='nav' aria-label='main mailbox' sx={{ margin: '3rem' }}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Icon icon='carbon:enterprise' fontSize={20} />
+                </ListItemIcon>
+                <ListItemText primary='Fabricante:' />
+              </ListItemButton>
+              <Typography variant='body1'> {result}</Typography>
+            </ListItem>
+          </List>
+        </Fragment>
       )}
     </Container>
   )
 }
 
-export default MacVendorLookup
+export default IndexPage

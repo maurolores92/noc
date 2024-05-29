@@ -1,9 +1,7 @@
-/** @type {import('next').NextConfig} */
-
-// Remove this if you're not using Fullcalendar features
+// next.config.js
 
 module.exports = {
-  output: 'export',
+  output: 'ssr', // Cambia 'export' a 'ssr'
   trailingSlash: true,
   reactStrictMode: false,
   images: {
