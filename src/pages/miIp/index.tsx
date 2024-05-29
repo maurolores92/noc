@@ -1,3 +1,5 @@
+import { Icon } from '@iconify/react'
+import { Container, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 
 const IPAddressDisplay = () => {
@@ -18,10 +20,22 @@ const IPAddressDisplay = () => {
   }, [])
 
   return (
-    <div>
-      <h2>Tu dirección IP es:</h2>
-      <p>{ipAddress}</p>
-    </div>
+    <Container maxWidth='sm'>
+      <Typography variant='h4' gutterBottom sx={{ textAlign: 'center' }}>
+        Tu dirección IP es:
+      </Typography>
+      <List component='nav' aria-label='main mailbox' sx={{ margin: '3rem' }}>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <Icon icon='carbon:enterprise' fontSize={20} />
+            </ListItemIcon>
+            <ListItemText primary='Tu IP:' />
+          </ListItemButton>
+          <Typography variant='body1'> {ipAddress}</Typography>
+        </ListItem>
+      </List>
+    </Container>
   )
 }
 

@@ -14,7 +14,7 @@ const users: UserDataType[] = [
   {
     id: 1,
     role: 'admin',
-    password: 'sawerin7',
+    password: 'nocadmin',
     fullName: 'Mauricio Lores',
     username: 'mauriciolores',
     email: 'admin@noc.com'
