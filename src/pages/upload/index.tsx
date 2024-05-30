@@ -3,16 +3,19 @@ import { TextField, Button, Typography, Container, Box } from '@mui/material'
 
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
+  const [port, setPort] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const [connectionStatus, setConnectionStatus] = useState<string>('')
 
   const handleConnect = async () => {
     try {
-      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/upload', {
+      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/api/upload', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ip: ip })
+        body: JSON.stringify({ ip, port, username, password })
       })
 
       if (response.ok) {
@@ -35,8 +38,7 @@ const UploadPage: React.FC = () => {
       <Typography variant='h1' sx={{ fontSize: '22px' }} gutterBottom>
         Prueba de Ancho de banda Ubiquiti
       </Typography>
-      <Box sx={{ display: 'flex' }}>
-        {' '}
+      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <TextField
           label='IP Address'
           variant='outlined'
@@ -45,6 +47,34 @@ const UploadPage: React.FC = () => {
           fullWidth
           required
           margin='normal'
+        />
+        <TextField
+          label='Port'
+          variant='outlined'
+          value={port}
+          onChange={event => setPort(event.target.value)}
+          fullWidth
+          required
+          margin='normal'
+        />
+        <TextField
+          label='Username'
+          variant='outlined'
+          value={username}
+          onChange={event => setUsername(event.target.value)}
+          fullWidth
+          required
+          margin='normal'
+        />
+        <TextField
+          label='Password'
+          variant='outlined'
+          value={password}
+          onChange={event => setPassword(event.target.value)}
+          fullWidth
+          required
+          margin='normal'
+          type='password'
         />
         <Button onClick={handleConnect} variant='contained' color='primary' sx={{ margin: '1rem' }}>
           Conectar
