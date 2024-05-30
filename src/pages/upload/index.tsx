@@ -3,7 +3,6 @@ import { TextField, Button, Typography, Container, Box } from '@mui/material'
 
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
-  const [result, setResult] = useState<string>('')
   const [connectionStatus, setConnectionStatus] = useState<string>('')
 
   const handleConnect = async () => {
@@ -60,11 +59,6 @@ const UploadPage: React.FC = () => {
       <Button onClick={handleSubmit} variant='contained' color='primary' fullWidth>
         Upload
       </Button>
-      {result && (
-        <Typography variant='body1' align='center' gutterBottom>
-          {result}
-        </Typography>
-      )}
     </Container>
   )
 }
