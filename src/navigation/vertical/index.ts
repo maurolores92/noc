@@ -29,6 +29,11 @@ const navigation = (): VerticalNavItemsType => {
       icon: 'tabler:brand-tabler'
     },
     {
+      title: 'Bandwith Test',
+      path: '/upload',
+      icon: 'material-symbols:upload'
+    },
+    {
       title: 'Whois',
       path: '/whois',
       icon: 'hugeicons:office'
