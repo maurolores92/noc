@@ -151,9 +151,22 @@ const UploadPage: React.FC = () => {
 
   const handleDownload = async () => {
     try {
-      await fetch('/download')
+      await fetch('https://chipped-sophisticated-grey.glitch.me/download')
     } catch (error) {
       console.error('Failed to download file:', error)
+    }
+  }
+
+  const handleReboot = async () => {
+    try {
+      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/reboot')
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const data = await response.json()
+      console.log(data)
+    } catch (error) {
+      console.error('Failed to reboot:', error)
     }
   }
 
@@ -174,7 +187,7 @@ const UploadPage: React.FC = () => {
         Prueba de Ancho de banda Ubiquiti
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={8} lg={5}>
+        <Grid item xs={8} lg={8}>
           <TextField
             label='IP Address'
             variant='outlined'
@@ -185,17 +198,37 @@ const UploadPage: React.FC = () => {
             margin='normal'
           />
         </Grid>
-        <Grid item xs={4} lg={3}>
+        <Grid item xs={4} lg={4}>
           <TextField label='Port' variant='outlined' value='8889' fullWidth disabled margin='normal' />
         </Grid>
-        <Grid item xs={6} lg={2}>
-          <Button onClick={handleConnect} variant='contained' color='primary' sx={{ margin: '1.5rem 0' }}>
+        <Grid item xs={4}>
+          <Button
+            onClick={handleConnect}
+            variant='contained'
+            color='primary'
+            sx={{ margin: '1.5rem 0', width: '100%' }}
+          >
             Conectar
           </Button>
         </Grid>
-        <Grid item xs={6} lg={2} sx={{ textAlign: 'center' }}>
-          <Button variant='contained' onClick={handleDownload} color='secondary' sx={{ margin: '1.5rem 1rem' }}>
+        <Grid item xs={4} sx={{ textAlign: 'center' }}>
+          <Button
+            variant='contained'
+            onClick={handleDownload}
+            color='secondary'
+            sx={{ margin: '1.5rem 0', width: '100%' }}
+          >
             Bandwith
+          </Button>
+        </Grid>
+        <Grid item xs={4} sx={{ textAlign: 'center' }}>
+          <Button
+            variant='contained'
+            onClick={handleReboot}
+            color='secondary'
+            sx={{ margin: '1.5rem 0', width: '100%' }}
+          >
+            Reiniciar
           </Button>
         </Grid>
         <Box sx={{ margin: '0 auto' }}>
