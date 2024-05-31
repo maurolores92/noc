@@ -405,7 +405,7 @@ const UploadPage: React.FC = () => {
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
-                      <Icon icon='mdi:ip' fontSize={20} />
+                      <Icon icon='material-symbols:factory-outline' fontSize={20} />
                     </ListItemIcon>
                     <ListItemText primary='Hostname:' />
                   </ListItemButton>
@@ -414,7 +414,7 @@ const UploadPage: React.FC = () => {
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
-                      <Icon icon='mdi:ip' fontSize={20} />
+                      <Icon icon='carbon:mac' fontSize={20} />
                     </ListItemIcon>
                     <ListItemText primary='MAC Cliente:' />
                   </ListItemButton>
