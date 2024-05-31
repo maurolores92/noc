@@ -9,6 +9,11 @@ const navigation = (): HorizontalNavItemsType => {
       path: '/'
     },
     {
+      title: 'Bandwith Test',
+      path: '/upload',
+      icon: 'material-symbols:upload'
+    },
+    {
       title: 'Ping',
       path: '/ping',
       icon: 'tabler:user'
@@ -28,11 +33,7 @@ const navigation = (): HorizontalNavItemsType => {
       path: '/miIp',
       icon: 'tabler:brand-tabler'
     },
-    {
-      title: 'Bandwith Test',
-      path: '/upload',
-      icon: 'material-symbols:upload'
-    },
+
     {
       title: 'Whois',
       path: '/whois',

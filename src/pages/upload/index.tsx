@@ -41,7 +41,7 @@ const UploadPage: React.FC = () => {
       if (autoConnect) {
         handleInfo()
       }
-    }, 1000) // Actualiza cada segundo
+    }, 2000) // Actualiza cada segundo
 
     return () => clearInterval(interval) // Limpia el intervalo cuando el componente se desmonta
   }, [autoConnect])
