@@ -1,36 +1,61 @@
 import React, { useState } from 'react'
-import { TextField, Button, Typography, Container, Box } from '@mui/material'
+import { TextField, Button, Typography, Container, Grid } from '@mui/material'
 
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
-  const [port, setPort] = useState<string>('')
-  const [username, setUsername] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
   const [connectionStatus, setConnectionStatus] = useState<string>('')
 
   const handleConnect = async () => {
     try {
-      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/api/upload', {
+      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/connect', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ ip, port, username, password })
+        body: JSON.stringify({
+          ip, // usa la variable de estado ip
+          port: '8889', // usa un valor vacío para el puerto
+          username: '', // usa un valor vacío para el nombre de usuario
+          password: '' // usa un valor vacío para la contraseña
+        })
       })
 
       if (response.ok) {
-        setConnectionStatus('Conectado')
+        setConnectionStatus('Conectado con éxito')
       } else {
-        setConnectionStatus('No conectado')
+        setConnectionStatus('Error al conectar')
       }
     } catch (error) {
       console.error('Error connecting:', error)
-      setConnectionStatus('No conectado')
+      setConnectionStatus('Error al conectar')
     }
   }
 
-  const handleSubmit = async () => {
-    // ... (tu código existente para manejar la subida del archivo)
+  const handleUpload = async () => {
+    try {
+      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/connect', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ip, // usa la variable de estado ip
+          port: '8889', // usa un valor vacío para el puerto
+          username: '', // usa un valor vacío para el nombre de usuario
+          password: '', // usa un valor vacío para la contraseña
+          url: 'http://www.sawerin.com.ar/IPCam.apk' // la URL del archivo a descargar
+        })
+      })
+
+      if (response.ok) {
+        setConnectionStatus('Archivo descargado con éxito')
+      } else {
+        setConnectionStatus('Error al descargar el archivo')
+      }
+    } catch (error) {
+      console.error('Error downloading file:', error)
+      setConnectionStatus('Error al descargar el archivo')
+    }
   }
 
   return (
@@ -38,57 +63,37 @@ const UploadPage: React.FC = () => {
       <Typography variant='h1' sx={{ fontSize: '22px' }} gutterBottom>
         Prueba de Ancho de banda Ubiquiti
       </Typography>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <TextField
-          label='IP Address'
-          variant='outlined'
-          value={ip}
-          onChange={event => setIp(event.target.value)}
-          fullWidth
-          required
-          margin='normal'
-        />
-        <TextField
-          label='Port'
-          variant='outlined'
-          value={port}
-          onChange={event => setPort(event.target.value)}
-          fullWidth
-          required
-          margin='normal'
-        />
-        <TextField
-          label='Username'
-          variant='outlined'
-          value={username}
-          onChange={event => setUsername(event.target.value)}
-          fullWidth
-          required
-          margin='normal'
-        />
-        <TextField
-          label='Password'
-          variant='outlined'
-          value={password}
-          onChange={event => setPassword(event.target.value)}
-          fullWidth
-          required
-          margin='normal'
-          type='password'
-        />
-        <Button onClick={handleConnect} variant='contained' color='primary' sx={{ margin: '1rem' }}>
-          Conectar
+      <Grid container spacing={2}>
+        <Grid item xs={7}>
+          <TextField
+            label='IP Address'
+            variant='outlined'
+            value={ip}
+            onChange={event => setIp(event.target.value)}
+            fullWidth
+            required
+            margin='normal'
+          />
+        </Grid>
+        <Grid item xs={3}>
+          <TextField label='Port' variant='outlined' value='8889' fullWidth disabled margin='normal' />
+        </Grid>
+        <Grid item xs={2}>
+          <Button onClick={handleConnect} variant='contained' color='primary' sx={{ margin: '1.5rem 0' }}>
+            Conectar
+          </Button>
+        </Grid>
+        {connectionStatus && (
+          <Grid item xs={12}>
+            <Typography variant='body1' align='center' gutterBottom>
+              {connectionStatus}
+            </Typography>
+          </Grid>
+        )}
+        <Button onClick={handleUpload} variant='contained' color='primary' fullWidth>
+          Upload
         </Button>
-      </Box>
-
-      {connectionStatus && (
-        <Typography variant='body1' align='center' gutterBottom>
-          {connectionStatus}
-        </Typography>
-      )}
-      <Button onClick={handleSubmit} variant='contained' color='primary' fullWidth>
-        Upload
-      </Button>
+      </Grid>
     </Container>
   )
 }
