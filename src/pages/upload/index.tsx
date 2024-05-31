@@ -10,7 +10,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Divider
 } from '@mui/material'
 import { Icon } from '@iconify/react'
 
@@ -38,6 +39,13 @@ const UploadPage: React.FC = () => {
   const [info, setInfo] = useState<InfoState>({})
   const [showInfo, setShowInfo] = useState<boolean>(false)
   const [autoConnect, setAutoConnect] = useState<boolean>(false)
+  const [dhcpLeasesInfo, setDhcpLeasesInfo] = useState({
+    timestamp: '',
+    macAddress: '',
+    ipAddress: '',
+    deviceName: '',
+    id: ''
+  })
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,6 +74,7 @@ const UploadPage: React.FC = () => {
         setConnectionStatus('Conectado con éxito')
         setShowInfo(true) // Muestra la información después de una conexión exitosa
         await handleInfo() // Llama a handleInfo después de una conexión exitosa
+        await handleGetDhcpLeases() // Llama a handleGetDhcpLeases después de una conexión exitosa
         setAutoConnect(true) // Inicia la conexión automática
       } else {
         setConnectionStatus('Error al conectar')
@@ -75,6 +84,40 @@ const UploadPage: React.FC = () => {
       console.error('Error connecting:', error)
       setConnectionStatus('Error al conectar')
       setShowInfo(false) // Oculta la información si la conexión falla
+    }
+  }
+
+  const handleGetDhcpLeases = async () => {
+    try {
+      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/dhcpLeases', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error('Error getting DHCP leases')
+      }
+
+      const data = await response.json()
+
+      // Split by space
+      const parts = data.message.split(' ')
+
+      // Create an object with the information
+      const newDhcpLeasesInfo = {
+        timestamp: parts[0],
+        macAddress: parts[1],
+        ipAddress: parts[2],
+        deviceName: parts[3],
+        id: parts[4]
+      }
+
+      // Actualiza el estado con la nueva información
+      setDhcpLeasesInfo(newDhcpLeasesInfo)
+    } catch (error) {
+      console.error('Error getting DHCP leases:', error)
     }
   }
 
@@ -239,7 +282,7 @@ const UploadPage: React.FC = () => {
             Reiniciar
           </Button>
         </Grid>
-        <Box sx={{ margin: '0 auto' }}>
+        <Box sx={{ width: '100%' }}>
           {connectionStatus && (
             <Box>
               <Typography variant='h4' align='center' gutterBottom>
@@ -248,8 +291,8 @@ const UploadPage: React.FC = () => {
             </Box>
           )}
           {showInfo && info && (
-            <Box>
-              <List component='nav' aria-label='main mailbox' sx={{ margin: '3rem' }}>
+            <Box sx={{ width: '100%' }}>
+              <List component='nav' aria-label='main mailbox' sx={{ width: '100%' }}>
                 <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
@@ -352,6 +395,39 @@ const UploadPage: React.FC = () => {
                     <ListItemText primary='Linkeo LAN:' />
                   </ListItemButton>
                   <Typography variant='body1'> {info.lanSpeed}</Typography>
+                </ListItem>
+              </List>
+              <Divider sx={{ m: '0 !important' }} />
+              <Typography variant='h5' sx={{ margin: '1rem auto', textAlign: 'center' }}>
+                Dhcp Leases
+              </Typography>
+              <List component='nav' aria-label='main mailbox' sx={{ margin: '1rem' }}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Icon icon='mdi:ip' fontSize={20} />
+                    </ListItemIcon>
+                    <ListItemText primary='Hostname:' />
+                  </ListItemButton>
+                  <Typography variant='body1'> {dhcpLeasesInfo.deviceName}</Typography>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Icon icon='mdi:ip' fontSize={20} />
+                    </ListItemIcon>
+                    <ListItemText primary='MAC Cliente:' />
+                  </ListItemButton>
+                  <Typography variant='body1'> {dhcpLeasesInfo.macAddress.toUpperCase()}</Typography>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Icon icon='mdi:ip' fontSize={20} />
+                    </ListItemIcon>
+                    <ListItemText primary='Dirección IP Cliente:' />
+                  </ListItemButton>
+                  <Typography variant='body1'> {dhcpLeasesInfo.ipAddress}</Typography>
                 </ListItem>
               </List>
             </Box>
