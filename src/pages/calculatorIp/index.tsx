@@ -173,7 +173,7 @@ const IPDetailsPage: React.FC = () => {
       {ipDetails && (
         <Box>
           <Fragment>
-            <List component='nav' aria-label='main mailbox'>
+            <List aria-label='main mailbox'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>

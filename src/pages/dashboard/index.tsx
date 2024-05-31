@@ -5,14 +5,14 @@ const Home = () => {
   return (
     <Container maxWidth='lg' sx={{ margin: '0 auto', textAlign: 'center' }}>
       <Grid container spacing={2} justifyContent='center'>
-        <Grid xs={3} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/upload'>
             <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
               Bandwidth Test
             </Button>
           </Link>
         </Grid>
-        <Grid xs={9} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={9} sx={{ margin: '1rem 0' }}>
           <Typography fontWeight={900} sx={{ textAlign: 'justify' }}>
             1. Monitoreo de Antenas Ubiquiti:{' '}
           </Typography>
@@ -23,14 +23,14 @@ const Home = () => {
           </Typography>
         </Grid>
 
-        <Grid xs={3} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/ping'>
             <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
               Ping
             </Button>
           </Link>
         </Grid>
-        <Grid xs={9} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={9} sx={{ margin: '1rem 0' }}>
           <Typography fontWeight={900} sx={{ textAlign: 'justify' }}>
             2. Herramienta de Ping:{' '}
           </Typography>
@@ -41,14 +41,14 @@ const Home = () => {
           </Typography>
         </Grid>
 
-        <Grid xs={3} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/calculatorIp'>
             <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
               Calculadora IP
             </Button>
           </Link>
         </Grid>
-        <Grid xs={9} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={9} sx={{ margin: '1rem 0' }}>
           <Typography fontWeight={900} sx={{ textAlign: 'justify' }}>
             3. Calculadora de Subredes:{' '}
           </Typography>
@@ -60,14 +60,14 @@ const Home = () => {
           </Typography>
         </Grid>
 
-        <Grid xs={3} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/mac'>
             <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
               MAC Vendors
             </Button>
           </Link>
         </Grid>
-        <Grid xs={9} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={9} sx={{ margin: '1rem 0' }}>
           <Typography fontWeight={900} sx={{ textAlign: 'justify' }}>
             4. Consulta de Fabricante de MAC:{' '}
           </Typography>
@@ -78,14 +78,14 @@ const Home = () => {
           </Typography>
         </Grid>
 
-        <Grid xs={3} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/miIp'>
             <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
               Mi IP
             </Button>
           </Link>
         </Grid>
-        <Grid xs={9} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={9} sx={{ margin: '1rem 0' }}>
           <Typography fontWeight={900} sx={{ textAlign: 'justify' }}>
             5. Mi IP:
           </Typography>
@@ -98,14 +98,14 @@ const Home = () => {
           </Typography>
         </Grid>
 
-        <Grid xs={3} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/whois'>
             <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
               Whois
             </Button>
           </Link>
         </Grid>
-        <Grid xs={9} sx={{ margin: '1rem 0' }}>
+        <Grid xs={12} lg={9} sx={{ margin: '1rem 0' }}>
           <Typography fontWeight={900} sx={{ textAlign: 'justify' }}>
             6. Identificación de Propietario de IP Pública:
           </Typography>

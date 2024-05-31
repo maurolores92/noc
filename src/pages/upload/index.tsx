@@ -26,6 +26,8 @@ interface InfoState {
   deviceId?: string
   uptime?: string
   platform?: string
+  wlanTxRate?: string
+  wlanRxRate?: string
   [key: string]: string | undefined
 }
 
@@ -94,8 +96,6 @@ const UploadPage: React.FC = () => {
         throw new Error('Unexpected response format')
       }
 
-      console.log('Raw data:', data.message) // Log the raw data
-
       // Split by comma, space and newline
       const pairs = data.message.split(/,| |\n/)
 
@@ -105,8 +105,6 @@ const UploadPage: React.FC = () => {
 
         return obj
       }, {})
-
-      console.log('Parsed data:', info) // Log the parsed data
 
       // Only keep the keys that you're interested in
       const keys = [
@@ -120,7 +118,9 @@ const UploadPage: React.FC = () => {
         'distance',
         'lanSpeed',
         'uptime',
-        'platform'
+        'platform',
+        'wlanTxRate',
+        'wlanRxRate'
       ]
       const filteredInfo = keys.reduce((obj: InfoState, key: string) => {
         obj[key] = info[key] || 'Error '
@@ -142,9 +142,30 @@ const UploadPage: React.FC = () => {
         distance: '',
         lanSpeed: '',
         uptime: '',
-        platform: ''
+        platform: '',
+        wlanTxRate: '',
+        wlanRxRate: ''
       })
     }
+  }
+
+  const handleDownload = async () => {
+    try {
+      await fetch('/download')
+    } catch (error) {
+      console.error('Failed to download file:', error)
+    }
+  }
+
+  function formatTime(seconds: number) {
+    const days = Math.floor(seconds / (24 * 60 * 60))
+    seconds -= days * 24 * 60 * 60
+    const hrs = Math.floor(seconds / (60 * 60))
+    seconds -= hrs * 60 * 60
+    const mnts = Math.floor(seconds / 60)
+    seconds -= mnts * 60
+
+    return `${days} days ${hrs}:${mnts}:${seconds}`
   }
 
   return (
@@ -153,7 +174,7 @@ const UploadPage: React.FC = () => {
         Prueba de Ancho de banda Ubiquiti
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={6}>
+        <Grid item xs={8} lg={5}>
           <TextField
             label='IP Address'
             variant='outlined'
@@ -164,12 +185,17 @@ const UploadPage: React.FC = () => {
             margin='normal'
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} lg={3}>
           <TextField label='Port' variant='outlined' value='8889' fullWidth disabled margin='normal' />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={6} lg={2}>
           <Button onClick={handleConnect} variant='contained' color='primary' sx={{ margin: '1.5rem 0' }}>
             Conectar
+          </Button>
+        </Grid>
+        <Grid item xs={6} lg={2} sx={{ textAlign: 'center' }}>
+          <Button variant='contained' onClick={handleDownload} color='secondary' sx={{ margin: '1.5rem 1rem' }}>
+            Bandwith
           </Button>
         </Grid>
         <Box sx={{ margin: '0 auto' }}>
@@ -226,7 +252,7 @@ const UploadPage: React.FC = () => {
                     </ListItemIcon>
                     <ListItemText primary='Uptime: ' />
                   </ListItemButton>
-                  <Typography variant='body1'>{info.uptime}</Typography>
+                  <Typography variant='body1'>{info.uptime ? formatTime(Number(info.uptime)) : 'N/A'}</Typography>
                 </ListItem>
                 <ListItem disablePadding>
                   <ListItemButton>
@@ -237,6 +263,17 @@ const UploadPage: React.FC = () => {
                   </ListItemButton>
                   <Typography variant='body1'>
                     {info.chain0Signal} | {info.chain1Signal}
+                  </Typography>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Icon icon='uil:signal' fontSize={20} />
+                    </ListItemIcon>
+                    <ListItemText primary='Señal Tx: | Señal Rx' />
+                  </ListItemButton>
+                  <Typography variant='body1'>
+                    {info.wlanTxRate}Mb | {info.wlanRxRate}Mb
                   </Typography>
                 </ListItem>
                 <ListItem disablePadding>
