@@ -33,6 +33,7 @@ interface InfoState {
 
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
+  const [port, setPort] = useState<string>('')
   const [connectionStatus, setConnectionStatus] = useState<string>('')
   const [info, setInfo] = useState<InfoState>({})
   const [showInfo, setShowInfo] = useState<boolean>(false)
@@ -56,8 +57,8 @@ const UploadPage: React.FC = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          ip // usa la variable de estado ip
-          // El nombre de usuario y la contraseña están en el backend
+          ip, // usa la variable de estado ip
+          port
         })
       })
 
@@ -199,7 +200,14 @@ const UploadPage: React.FC = () => {
           />
         </Grid>
         <Grid item xs={4} lg={4}>
-          <TextField label='Port' variant='outlined' value='8889' fullWidth disabled margin='normal' />
+          <TextField
+            label='Port'
+            variant='outlined'
+            value={port}
+            onChange={event => setPort(event.target.value)}
+            fullWidth
+            margin='normal'
+          />
         </Grid>
         <Grid item xs={4}>
           <Button
