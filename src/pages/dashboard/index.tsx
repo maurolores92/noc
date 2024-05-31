@@ -1,4 +1,4 @@
-import { Container, Button, Box, Typography, Grid } from '@mui/material'
+import { Container, Button, Typography, Grid } from '@mui/material'
 import Link from 'next/link'
 
 const Home = () => {
