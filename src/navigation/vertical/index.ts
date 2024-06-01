@@ -21,22 +21,22 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'Ping',
       path: '/ping',
-      icon: 'tabler:user'
+      icon: 'tabler:brand-tabler'
     },
     {
       title: 'Calculadora Ip',
       path: '/calculatorIp',
-      icon: 'tabler:brand-tabler'
+      icon: 'ph:calculator'
     },
     {
       title: 'MAC Vendors',
-      icon: 'tabler:forms',
+      icon: 'carbon:mac',
       path: '/mac'
     },
     {
       title: 'Mi IP',
       path: '/miIp',
-      icon: 'tabler:brand-tabler'
+      icon: 'mdi:ip'
     },
 
     {

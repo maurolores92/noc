@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/react'
 import { Container, Button, Typography, Grid } from '@mui/material'
 import Link from 'next/link'
 
@@ -7,8 +8,9 @@ const Home = () => {
       <Grid container spacing={2} justifyContent='center'>
         <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/ubiquiti'>
-            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
-              Ubiquiti
+            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '180px' }}>
+              <Icon icon='cbi:ubiquiti' fontSize={20} />
+              <span style={{ marginLeft: '0.5rem' }}>Ubiquiti</span>
             </Button>
           </Link>
         </Grid>
@@ -25,8 +27,9 @@ const Home = () => {
 
         <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/ping'>
-            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
-              Ping
+            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '180px' }}>
+              <Icon icon='tabler:user' fontSize={20} />
+              <span style={{ marginLeft: '0.5rem' }}>Ping</span>
             </Button>
           </Link>
         </Grid>
@@ -43,8 +46,9 @@ const Home = () => {
 
         <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/calculatorIp'>
-            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
-              Calculadora IP
+            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '180px' }}>
+              <Icon icon='ph:calculator' fontSize={20} />
+              <span style={{ marginLeft: '0.5rem' }}>Calculadora IP</span>
             </Button>
           </Link>
         </Grid>
@@ -62,8 +66,9 @@ const Home = () => {
 
         <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/mac'>
-            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
-              MAC Vendors
+            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '180px' }}>
+              <Icon icon='carbon:mac' fontSize={20} />
+              <span style={{ marginLeft: '0.5rem' }}>MAC Vendors</span>
             </Button>
           </Link>
         </Grid>
@@ -80,8 +85,9 @@ const Home = () => {
 
         <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/miIp'>
-            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
-              Mi IP
+            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '180px' }}>
+              <Icon icon='mdi:ip' fontSize={20} />
+              <span style={{ marginLeft: '0.5rem' }}>Mi IP</span>
             </Button>
           </Link>
         </Grid>
@@ -100,8 +106,9 @@ const Home = () => {
 
         <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
           <Link href='/whois'>
-            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
-              Whois
+            <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '180px' }}>
+              <Icon icon='hugeicons:office' fontSize={20} />
+              <span style={{ marginLeft: '0.5rem' }}>Whois</span>
             </Button>
           </Link>
         </Grid>
