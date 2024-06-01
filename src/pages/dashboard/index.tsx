@@ -6,9 +6,9 @@ const Home = () => {
     <Container maxWidth='lg' sx={{ margin: '0 auto', textAlign: 'center' }}>
       <Grid container spacing={2} justifyContent='center'>
         <Grid xs={12} lg={3} sx={{ margin: '1rem 0' }}>
-          <Link href='/upload'>
+          <Link href='/ubiquiti'>
             <Button variant='contained' color='primary' sx={{ margin: '1rem', width: '160px' }}>
-              Bandwidth Test
+              Ubiquiti
             </Button>
           </Link>
         </Grid>

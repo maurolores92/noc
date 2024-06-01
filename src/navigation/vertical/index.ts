@@ -9,9 +9,14 @@ const navigation = (): VerticalNavItemsType => {
       path: '/'
     },
     {
-      title: 'Bandwith Test',
-      path: '/upload',
-      icon: 'material-symbols:upload'
+      title: 'Ubiquiti',
+      path: '/ubiquiti',
+      icon: 'cbi:ubiquiti'
+    },
+    {
+      title: 'Mikrotik',
+      path: '/mikrotik',
+      icon: 'simple-icons:mikrotik'
     },
     {
       title: 'Ping',

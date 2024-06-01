@@ -35,6 +35,8 @@ interface InfoState {
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
   const [port, setPort] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const [connectionStatus, setConnectionStatus] = useState<string>('')
   const [info, setInfo] = useState<InfoState>({})
   const [showInfo, setShowInfo] = useState<boolean>(false)
@@ -66,7 +68,9 @@ const UploadPage: React.FC = () => {
         },
         body: JSON.stringify({
           ip,
-          port
+          port,
+          username,
+          password
         })
       })
 
@@ -248,6 +252,26 @@ const UploadPage: React.FC = () => {
             variant='outlined'
             value={port}
             onChange={event => setPort(event.target.value)}
+            fullWidth
+            margin='normal'
+          />
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <TextField
+            label='Usuario'
+            variant='outlined'
+            value={username}
+            onChange={event => setUsername(event.target.value)}
+            fullWidth
+            margin='normal'
+          />
+        </Grid>
+        <Grid item xs={12} lg={6}>
+          <TextField
+            label='Contraseña'
+            variant='outlined'
+            value={password}
+            onChange={event => setPassword(event.target.value)}
             fullWidth
             margin='normal'
           />
