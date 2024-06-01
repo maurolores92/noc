@@ -32,6 +32,12 @@ interface InfoState {
   [key: string]: string | undefined
 }
 
+interface SystemState {
+  'dhcpd.1.start'?: string
+  'dhcpd.1.end'?: string
+  [key: string]: string | undefined
+}
+
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
   const [port, setPort] = useState<string>('')
@@ -39,6 +45,7 @@ const UploadPage: React.FC = () => {
   const [password, setPassword] = useState<string>('')
   const [connectionStatus, setConnectionStatus] = useState<string>('')
   const [info, setInfo] = useState<InfoState>({})
+  const [system, setSystem] = useState<SystemState>({})
   const [showInfo, setShowInfo] = useState<boolean>(false)
   const [autoConnect, setAutoConnect] = useState<boolean>(false)
   const [dhcpLeasesInfo, setDhcpLeasesInfo] = useState({
@@ -79,6 +86,7 @@ const UploadPage: React.FC = () => {
         setShowInfo(true) // Muestra la información después de una conexión exitosa
         await handleInfo() // Llama a handleInfo después de una conexión exitosa
         await handleGetDhcpLeases() // Llama a handleGetDhcpLeases después de una conexión exitosa
+        await handleSystemConfig()
         setAutoConnect(true) // Inicia la conexión automática
       } else {
         setConnectionStatus('Error al conectar')
@@ -122,6 +130,59 @@ const UploadPage: React.FC = () => {
       setDhcpLeasesInfo(newDhcpLeasesInfo)
     } catch (error) {
       console.error('Error getting DHCP leases:', error)
+    }
+  }
+
+  const handleSystemConfig = async () => {
+    try {
+      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/systemConfig', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error('Error getting system config')
+      }
+
+      const data = await response.json()
+
+      if (typeof data.message !== 'string') {
+        throw new Error('Unexpected response format')
+      }
+
+      // Split by newline first to get each line, then split by '=' to get key-value pairs
+      const lines = data.message.split('\n')
+
+      const system = lines.reduce((obj: SystemState, line: string) => {
+        const [key, value] = line.split('=')
+        if (key && value) {
+          obj[key.trim()] = value.trim()
+        }
+
+        return obj
+      }, {})
+
+      // Only keep the keys that you're interested in
+      const keys = ['dhcpd.1.start', 'dhcpd.1.end']
+      const filteredSystem = keys.reduce((obj: SystemState, key: string) => {
+        if (key in system) {
+          obj[key] = system[key]
+        } else {
+          obj[key] = 'Error'
+        }
+
+        return obj
+      }, {})
+
+      setSystem(filteredSystem)
+    } catch (error) {
+      console.error('Error getting system config:', error)
+      setSystem({
+        'dhcpd.1.start': 'Error',
+        'dhcpd.1.end': 'Error'
+      })
     }
   }
 
@@ -452,6 +513,17 @@ const UploadPage: React.FC = () => {
                     <ListItemText primary='Dirección IP Cliente:' />
                   </ListItemButton>
                   <Typography variant='body1'> {dhcpLeasesInfo.ipAddress}</Typography>
+                </ListItem>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Icon icon='mdi:ip' fontSize={20} />
+                    </ListItemIcon>
+                    <ListItemText primary='Ip inicio - fin:' />
+                  </ListItemButton>
+                  <Typography variant='body1'>
+                    {system['dhcpd.1.start']} - {system['dhcpd.1.end']}
+                  </Typography>
                 </ListItem>
               </List>
             </Box>
