@@ -64,24 +64,45 @@ const defaultSuggestionsData: DefaultSuggestionsType[] = [
     category: 'Menu',
     suggestions: [
       {
+        suggestion: 'Dashboards',
         icon: 'tabler:smart-home',
-        suggestion: 'Dashboard',
         link: '/'
       },
       {
-        icon: 'tabler:user',
-        suggestion: 'Ping',
-        link: '/ping'
+        suggestion: 'Ubiquiti',
+        link: '/ubiquiti',
+        icon: 'cbi:ubiquiti'
       },
       {
-        icon: 'tabler:forms',
-        suggestion: 'Mac',
+        suggestion: 'Mikrotik',
+        link: '/mikrotik',
+        icon: 'simple-icons:mikrotik'
+      },
+      {
+        suggestion: 'Ping',
+        link: '/ping',
+        icon: 'tabler:brand-tabler'
+      },
+      {
+        suggestion: 'Calculadora Ip',
+        link: '/calculatorIp',
+        icon: 'ph:calculator'
+      },
+      {
+        suggestion: 'MAC Vendors',
+        icon: 'carbon:mac',
         link: '/mac'
       },
       {
-        icon: 'tabler:brand-tabler',
-        suggestion: 'Calculadora de IP',
-        link: '/calculatorIp'
+        suggestion: 'Mi IP',
+        link: '/miIp',
+        icon: 'mdi:ip'
+      },
+
+      {
+        suggestion: 'Whois',
+        link: '/whois',
+        icon: 'hugeicons:office'
       }
     ]
   }
@@ -244,9 +265,9 @@ const NoResult = ({ value, setOpenDialog }: NoResultProps) => {
 
 const DefaultSuggestions = ({ setOpenDialog }: DefaultSuggestionsProps) => {
   return (
-    <Grid container spacing={6} sx={{ ml: 0 }}>
+    <Grid container sx={{ ml: 0 }}>
       {defaultSuggestionsData.map((item, index) => (
-        <Grid item xs={12} sm={6} key={index}>
+        <Grid item xs={12} sm={12} key={index}>
           <Typography component='p' variant='overline' sx={{ lineHeight: 1.25, color: 'text.disabled' }}>
             {item.category}
           </Typography>
@@ -373,7 +394,7 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
           <Icon fontSize='1.625rem' icon='tabler:search' />
         </IconButton>
         {!hidden && layout === 'vertical' ? (
-          <Typography sx={{ userSelect: 'none', color: 'text.disabled' }}>Search (Ctrl+/)</Typography>
+          <Typography sx={{ userSelect: 'none', color: 'text.disabled' }}>Buscador</Typography>
         ) : null}
         {openDialog && (
           <Dialog fullWidth open={openDialog} fullScreen={fullScreenDialog} onClose={() => setOpenDialog(false)}>
@@ -434,9 +455,7 @@ const AutocompleteComponent = ({ hidden, settings }: Props) => {
                             sx={{ display: 'flex', cursor: 'pointer', alignItems: 'center' }}
                           >
                             {!hidden ? <Typography sx={{ mr: 2.5, color: 'text.disabled' }}>[esc]</Typography> : null}
-                            <IconButton size='small' sx={{ p: 1 }}>
-                              <Icon icon='tabler:x' fontSize='1.25rem' />
-                            </IconButton>
+                            <IconButton size='small' sx={{ p: 1 }}></IconButton>
                           </InputAdornment>
                         )
                       }}

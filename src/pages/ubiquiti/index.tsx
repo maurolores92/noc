@@ -38,6 +38,8 @@ interface SystemState {
   [key: string]: string | undefined
 }
 
+const API_URL = 'http://localhost:3000/'
+
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
   const [port, setPort] = useState<string>('')
@@ -61,14 +63,14 @@ const UploadPage: React.FC = () => {
       if (autoConnect) {
         handleInfo()
       }
-    }, 2000) // Actualiza cada segundo
+    }, 2000)
 
-    return () => clearInterval(interval) // Limpia el intervalo cuando el componente se desmonta
+    return () => clearInterval(interval)
   }, [autoConnect])
 
   const handleConnect = async () => {
     try {
-      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/connect', {
+      const response = await fetch(`${API_URL}/connect`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -101,7 +103,7 @@ const UploadPage: React.FC = () => {
 
   const handleGetDhcpLeases = async () => {
     try {
-      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/dhcpLeases', {
+      const response = await fetch(`${API_URL}/dhcpLeases`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -135,7 +137,7 @@ const UploadPage: React.FC = () => {
 
   const handleSystemConfig = async () => {
     try {
-      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/systemConfig', {
+      const response = await fetch(`${API_URL}/systemConfig`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -188,7 +190,7 @@ const UploadPage: React.FC = () => {
 
   const handleInfo = async () => {
     try {
-      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/info', {
+      const response = await fetch(`${API_URL}/info`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -260,7 +262,7 @@ const UploadPage: React.FC = () => {
 
   const handleDownload = async () => {
     try {
-      await fetch('https://chipped-sophisticated-grey.glitch.me/download')
+      await fetch(`${API_URL}/download`)
     } catch (error) {
       console.error('Failed to download file:', error)
     }
@@ -268,7 +270,7 @@ const UploadPage: React.FC = () => {
 
   const handleReboot = async () => {
     try {
-      const response = await fetch('https://chipped-sophisticated-grey.glitch.me/reboot')
+      const response = await fetch(`${API_URL}/reboot`)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }

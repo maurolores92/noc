@@ -1,7 +1,7 @@
 // next.config.js
 
 module.exports = {
-  output: 'ssr', // Cambia 'export' a 'ssr'
+  // output: 'ssr', // Cambia 'export' a 'ssr'
   trailingSlash: true,
   reactStrictMode: false,
   images: {
