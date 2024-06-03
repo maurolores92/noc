@@ -38,7 +38,7 @@ interface SystemState {
   [key: string]: string | undefined
 }
 
-const API_URL = 'http://localhost:3000'
+const API_URL = 'http://10.23.0.48:3000'
 
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
@@ -262,9 +262,14 @@ const UploadPage: React.FC = () => {
 
   const handleDownload = async () => {
     try {
-      await fetch(`${API_URL}/download`)
+      const response = await fetch(`${API_URL}/download`)
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const data = await response.json()
+      console.log(data)
     } catch (error) {
-      console.error('Failed to download file:', error)
+      console.error('Failed to download:', error)
     }
   }
 
