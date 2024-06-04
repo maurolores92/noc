@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Button, Grid, TextField } from '@mui/material'
 
-const API_URL = 'http://localhost:3000'
+const API_URL = 'https://noc-backend.glitch.me'
 
 const ConnectMikrotik = (): React.ReactElement => {
   const [ip, setIp] = useState<string>('')

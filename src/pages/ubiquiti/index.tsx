@@ -38,7 +38,7 @@ interface SystemState {
   [key: string]: string | undefined
 }
 
-const API_URL = 'https://chipped-sophisticated-grey.glitch.me'
+const API_URL = 'https://noc-backend.glitch.me'
 
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
