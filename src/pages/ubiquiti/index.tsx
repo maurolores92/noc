@@ -38,13 +38,13 @@ interface SystemState {
   [key: string]: string | undefined
 }
 
-const API_URL = 'http://10.23.0.48:3000'
+const API_URL = 'https://chipped-sophisticated-grey.glitch.me'
 
 const UploadPage: React.FC = () => {
   const [ip, setIp] = useState<string>('')
-  const port = '8889' // Establece el puerto predeterminado aquí
-  const username = 'nortech' // Establece el nombre de usuario predeterminado aquí
-  const password = 'Nor3164!' // Establece la contraseña predeterminada aquí
+  const [port, setPort] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
   const [connectionStatus, setConnectionStatus] = useState<string>('')
   const [info, setInfo] = useState<InfoState>({})
   const [system, setSystem] = useState<SystemState>({})
@@ -303,12 +303,45 @@ const UploadPage: React.FC = () => {
         Prueba de Ancho de banda Ubiquiti
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} lg={12}>
+        <Grid item xs={12} lg={8}>
           <TextField
             label='IP Address'
             variant='outlined'
             value={ip}
             onChange={event => setIp(event.target.value)}
+            fullWidth
+            required
+            margin='normal'
+          />
+        </Grid>
+        <Grid item xs={12} lg={4}>
+          <TextField
+            label='Port'
+            variant='outlined'
+            value={ip}
+            onChange={event => setPort(event.target.value)}
+            fullWidth
+            required
+            margin='normal'
+          />
+        </Grid>
+        <Grid item xs={12} lg={4}>
+          <TextField
+            label='Usuario'
+            variant='outlined'
+            value={ip}
+            onChange={event => setUsername(event.target.value)}
+            fullWidth
+            required
+            margin='normal'
+          />
+        </Grid>
+        <Grid item xs={12} lg={4}>
+          <TextField
+            label='Contraseña'
+            variant='outlined'
+            value={ip}
+            onChange={event => setPassword(event.target.value)}
             fullWidth
             required
             margin='normal'
