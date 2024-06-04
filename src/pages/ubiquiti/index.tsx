@@ -325,7 +325,7 @@ const UploadPage: React.FC = () => {
             margin='normal'
           />
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} lg={6}>
           <TextField
             label='Usuario'
             variant='outlined'
@@ -336,7 +336,7 @@ const UploadPage: React.FC = () => {
             margin='normal'
           />
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} lg={6}>
           <TextField
             label='Contraseña'
             variant='outlined'
