@@ -8,7 +8,6 @@ const ConnectMikrotik = (): React.ReactElement => {
   const [port, setPort] = useState<string>('')
   const [user, setUser] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [interfaces, setInterfaces] = useState<any[]>([])
 
   const handleConnect = async () => {
     try {
@@ -25,8 +24,7 @@ const ConnectMikrotik = (): React.ReactElement => {
         })
       })
 
-      const data = await response.json() // Obtiene los datos de la respuesta
-      setInterfaces(data) // Almacena las interfaces en el estado
+      const data = await response.json()
       console.log(data)
     } catch (error) {
       console.error(error)
