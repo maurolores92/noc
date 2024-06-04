@@ -318,7 +318,7 @@ const UploadPage: React.FC = () => {
           <TextField
             label='Port'
             variant='outlined'
-            value={ip}
+            value={port}
             onChange={event => setPort(event.target.value)}
             fullWidth
             required
@@ -329,7 +329,7 @@ const UploadPage: React.FC = () => {
           <TextField
             label='Usuario'
             variant='outlined'
-            value={ip}
+            value={username}
             onChange={event => setUsername(event.target.value)}
             fullWidth
             required
@@ -340,7 +340,7 @@ const UploadPage: React.FC = () => {
           <TextField
             label='Contraseña'
             variant='outlined'
-            value={ip}
+            value={password}
             onChange={event => setPassword(event.target.value)}
             fullWidth
             required
