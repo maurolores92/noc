@@ -148,9 +148,11 @@ const Register = () => {
             </svg>
             <Box sx={{ my: 6 }}>
               <Typography variant='h3' sx={{ mb: 1.5 }}>
-                Adventure starts here 🚀
+                La aventura comienza aquí 🚀
               </Typography>
-              <Typography sx={{ color: 'text.secondary' }}>Make your app management easy and fun!</Typography>
+              <Typography sx={{ color: 'text.secondary' }}>
+                ¡Haz que la gestión de tu aplicación sea fácil y divertida!
+              </Typography>
             </Box>
             <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
               <CustomTextField autoFocus fullWidth sx={{ mb: 4 }} label='Username' placeholder='johndoe' />
@@ -179,20 +181,20 @@ const Register = () => {
                 sx={{ mb: 4, mt: 1.5, '& .MuiFormControlLabel-label': { fontSize: theme.typography.body2.fontSize } }}
                 label={
                   <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-                    <Typography sx={{ color: 'text.secondary' }}>I agree to</Typography>
+                    <Typography sx={{ color: 'text.secondary' }}>Estoy de acuerdo con</Typography>
                     <Typography component={LinkStyled} href='/' onClick={e => e.preventDefault()} sx={{ ml: 1 }}>
-                      privacy policy & terms
+                      política de privacidad y términos
                     </Typography>
                   </Box>
                 }
               />
               <Button fullWidth type='submit' variant='contained' sx={{ mb: 4 }}>
-                Sign up
+                Crear Cuenta
               </Button>
               <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <Typography sx={{ color: 'text.secondary', mr: 2 }}>Already have an account?</Typography>
+                <Typography sx={{ color: 'text.secondary', mr: 2 }}>¿Ya tienes una cuenta?</Typography>
                 <Typography component={LinkStyled} href='/login'>
-                  Sign in instead
+                  Inicia sesión en su lugar
                 </Typography>
               </Box>
               <Divider
@@ -206,22 +208,37 @@ const Register = () => {
                 or
               </Divider>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <IconButton href='/' component={Link} sx={{ color: '#497ce2' }} onClick={e => e.preventDefault()}>
-                  <Icon icon='mdi:facebook' />
-                </IconButton>
-                <IconButton href='/' component={Link} sx={{ color: '#1da1f2' }} onClick={e => e.preventDefault()}>
-                  <Icon icon='mdi:twitter' />
+                <IconButton
+                  href='https://wa.me/+541126882173'
+                  component={Link}
+                  sx={{ color: 'green' }}
+                  onClick={e => e.preventDefault()}
+                >
+                  <Icon icon='mdi:whatsapp' />
                 </IconButton>
                 <IconButton
-                  href='/'
+                  href='https://www.linkedin.com/in/mauriciolores/'
+                  component={Link}
+                  sx={{ color: '#1da1f2' }}
+                  onClick={e => e.preventDefault()}
+                >
+                  <Icon icon='mdi:linkedin' />
+                </IconButton>
+                <IconButton
+                  href='https://github.com/maurolores92'
                   component={Link}
                   onClick={e => e.preventDefault()}
                   sx={{ color: theme => (theme.palette.mode === 'light' ? '#272727' : 'grey.300') }}
                 >
                   <Icon icon='mdi:github' />
                 </IconButton>
-                <IconButton href='/' component={Link} sx={{ color: '#db4437' }} onClick={e => e.preventDefault()}>
-                  <Icon icon='mdi:google' />
+                <IconButton
+                  href='mailto:maurolores1992@gmail.com'
+                  component={Link}
+                  sx={{ color: '#db4437' }}
+                  onClick={e => e.preventDefault()}
+                >
+                  <Icon icon='mdi:email' />
                 </IconButton>
               </Box>
             </form>

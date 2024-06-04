@@ -9,6 +9,7 @@ import createEmotionServer from '@emotion/server/create-instance'
 
 // ** Utils Imports
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
+import themeConfig from 'src/configs/themeConfig'
 
 class CustomDocument extends Document {
   render() {
@@ -23,6 +24,18 @@ class CustomDocument extends Document {
           />
           <link rel='apple-touch-icon' sizes='180x180' href='/images/apple-touch-icon.png' />
           <link rel='shortcut icon' href='/images/favicon.png' />
+          <meta name='description' content={`${themeConfig.templateName} –Network Operations Center`} />
+          <meta name='keywords' content='Network Operations Center' />
+          <meta name='viewport' content='initial-scale=1, width=device-width' />
+          <meta name='description' content='Optimiza la gestión de redes con nuestras herramientas NOC.' />
+          <meta property='og:title' content='NOC | Network Operations Center' />
+          <meta property='og:description' content='Optimiza la gestión de redes con nuestras herramientas NOC.' />
+          <meta property='og:url' content='https://www.codewithmauricio.tech/' />
+          <meta property='og:site_name' content='NOC | Network Operations Center | Mauricio Lores' />
+          <meta property='og:type' content='website' />
+          <meta property='og:locale' content='es_ES' />
+          <link rel='canonical' href='https://codewithmauricio.tech/' />
+          <meta property='og:image' content='http://imgfz.com/i/xsgHleE.png' />
         </Head>
         <body>
           <Main />

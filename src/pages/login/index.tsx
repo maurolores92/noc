@@ -192,11 +192,9 @@ const LoginPage = () => {
             </svg>
             <Box sx={{ my: 6 }}>
               <Typography variant='h3' sx={{ mb: 1.5 }}>
-                {`Welcome to ${themeConfig.templateName}! 👋🏻`}
+                {`Bienvenido a ${themeConfig.templateName}! 👋🏻`}
               </Typography>
-              <Typography sx={{ color: 'text.secondary' }}>
-                Please sign-in to your account and start the adventure
-              </Typography>
+              <Typography sx={{ color: 'text.secondary' }}>Inicie sesión en su cuenta</Typography>
             </Box>
             <Alert icon={false} sx={{ py: 3, mb: 6, ...bgColors.primaryLight, '& .MuiAlert-message': { p: 0 } }}>
               <Typography variant='body2' sx={{ mb: 2, color: 'primary.main' }}>
@@ -267,20 +265,20 @@ const LoginPage = () => {
                 }}
               >
                 <FormControlLabel
-                  label='Remember Me'
+                  label='Recuerdame'
                   control={<Checkbox checked={rememberMe} onChange={e => setRememberMe(e.target.checked)} />}
                 />
                 <Typography component={LinkStyled} href='/forgot-password'>
-                  Forgot Password?
+                  ¿Has olvidado tu contraseña?
                 </Typography>
               </Box>
               <Button fullWidth type='submit' variant='contained' sx={{ mb: 4 }}>
-                Login
+                Acceder
               </Button>
               <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <Typography sx={{ color: 'text.secondary', mr: 2 }}>New on our platform?</Typography>
+                <Typography sx={{ color: 'text.secondary', mr: 2 }}>¿Nueva en nuestra plataforma?</Typography>
                 <Typography href='/register' component={LinkStyled}>
-                  Create an account
+                  Crea una cuenta
                 </Typography>
               </Box>
               <Divider
@@ -291,27 +289,27 @@ const LoginPage = () => {
                   my: theme => `${theme.spacing(6)} !important`
                 }}
               >
-                or
+                o
               </Divider>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <IconButton
-                  href='/'
+                  href='https://wa.me/+541126882173'
                   component={Link}
-                  sx={{ color: '#497ce2' }}
+                  sx={{ color: 'green' }}
                   onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
                 >
-                  <Icon icon='mdi:facebook' />
+                  <Icon icon='mdi:whatsapp' />
                 </IconButton>
                 <IconButton
-                  href='/'
+                  href='https://www.linkedin.com/in/mauriciolores/'
                   component={Link}
                   sx={{ color: '#1da1f2' }}
                   onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
                 >
-                  <Icon icon='mdi:twitter' />
+                  <Icon icon='mdi:linkedin' />
                 </IconButton>
                 <IconButton
-                  href='/'
+                  href='https://github.com/maurolores92'
                   component={Link}
                   onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
                   sx={{ color: theme => (theme.palette.mode === 'light' ? '#272727' : 'grey.300') }}
@@ -319,12 +317,12 @@ const LoginPage = () => {
                   <Icon icon='mdi:github' />
                 </IconButton>
                 <IconButton
-                  href='/'
+                  href='mailto:maurolores1992@gmail.com'
                   component={Link}
                   sx={{ color: '#db4437' }}
                   onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}
                 >
-                  <Icon icon='mdi:google' />
+                  <Icon icon='mdi:email' />
                 </IconButton>
               </Box>
             </form>

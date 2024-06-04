@@ -25,7 +25,7 @@ const PingPage: React.FC = () => {
 
   const handlePing = async () => {
     try {
-      const response = await fetch(`https://chipped-sophisticated-grey.glitch.me/ping/${ipAddress}`)
+      const response = await fetch(`https://noc-backend.glitch.me/ping/${ipAddress}`)
       if (response.ok) {
         const data = await response.json()
         setPingResults(prevResults => [data, ...prevResults]) // .slice(0, 9) ha sido removido
@@ -48,7 +48,7 @@ const PingPage: React.FC = () => {
     return () => {
       if (intervalId) clearInterval(intervalId)
     }
-  }, [startPing, pingInterval]) // ipAddress ha sido removido de las dependencias
+  }, [startPing, pingInterval])
 
   const startPingHandler = () => {
     setPingResults([])
