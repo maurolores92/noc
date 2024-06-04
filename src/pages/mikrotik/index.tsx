@@ -1,12 +1,88 @@
-import { Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
+import { Container, Button, Grid, TextField } from '@mui/material'
 
-const WorkingSoon: React.FC = () => {
+const API_URL = 'http://localhost:3000'
+
+const ConnectMikrotik = (): React.ReactElement => {
+  const [ip, setIp] = useState<string>('')
+  const [port, setPort] = useState<string>('')
+  const [user, setUser] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [interfaces, setInterfaces] = useState<any[]>([])
+
+  const handleConnect = async () => {
+    try {
+      const response = await fetch(`${API_URL}/connectMikrotik`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ip,
+          port,
+          user,
+          password
+        })
+      })
+
+      const data = await response.json() // Obtiene los datos de la respuesta
+      setInterfaces(data) // Almacena las interfaces en el estado
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
-    <Typography variant='h4' align='center'>
-      Estamos trabajando, próximamente
-    </Typography>
+    <Container maxWidth='sm'>
+      <Grid container spacing={3}>
+        <Grid item xs={8}>
+          <TextField
+            label='Host'
+            variant='outlined'
+            value={ip}
+            onChange={event => setIp(event.target.value)}
+            fullWidth
+            required
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <TextField
+            label='Puerto'
+            variant='outlined'
+            value={port}
+            onChange={event => setPort(event.target.value)}
+            fullWidth
+            required
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label='Usuario'
+            variant='outlined'
+            value={user}
+            onChange={event => setUser(event.target.value)}
+            fullWidth
+            required
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <TextField
+            label='Contraseña'
+            variant='outlined'
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+            fullWidth
+            required
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant='contained' color='primary' onClick={handleConnect}>
+            Conectar
+          </Button>
+        </Grid>
+      </Grid>
+    </Container>
   )
 }
-
-export default WorkingSoon
+export default ConnectMikrotik
